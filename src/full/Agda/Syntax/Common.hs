@@ -1160,7 +1160,10 @@ namedArg :: NamedArg a -> a
 namedArg = namedThing . unArg
 
 defaultNamedArg :: a -> NamedArg a
-defaultNamedArg = defaultArg . unnamed
+defaultNamedArg = unnamedArg defaultArgInfo
+
+unnamedArg :: ArgInfo -> a -> NamedArg a
+unnamedArg info = Arg info . unnamed
 
 -- | The functor instance for 'NamedArg' would be ambiguous,
 --   so we give it another name here.
